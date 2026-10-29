@@ -1,4 +1,5 @@
 #include "ui.hpp"
+#include <algorithm>
 #include <core/global/globals.hpp>
 #include <cstdint>
 #include <fancy.hpp>
@@ -557,6 +558,11 @@ namespace Audiopad::Objects
                 {
                     playingSound.raw.device.load()->masterVolumeFactor =
                         static_cast<float>(localVolume ? *localVolume : Globals::gSettings.localVolume) / 100.f;
+                    if (playingSound.raw.boostFactor)
+                    {
+                        playingSound.raw.boostFactor->store(Globals::gAudio.getBoostFactor(sound->get().id),
+                                                            std::memory_order_relaxed);
+                    }
                 }
             }
 
@@ -581,6 +587,11 @@ namespace Audiopad::Objects
                 {
                     playingSound.raw.device.load()->masterVolumeFactor =
                         static_cast<float>(remoteVolume ? *remoteVolume : Globals::gSettings.remoteVolume) / 100.f;
+                    if (playingSound.raw.boostFactor)
+                    {
+                        playingSound.raw.boostFactor->store(Globals::gAudio.getBoostFactor(sound->get().id),
+                                                            std::memory_order_relaxed);
+                    }
                 }
             }
 
@@ -597,7 +608,8 @@ namespace Audiopad::Objects
         auto oldSettings = Globals::gSettings;
         Globals::gSettings = settings;
 
-        if ((settings.localVolume != oldSettings.localVolume || settings.remoteVolume != oldSettings.remoteVolume) &&
+        if ((settings.localVolume != oldSettings.localVolume || settings.remoteVolume != oldSettings.remoteVolume ||
+             settings.soundBoost != oldSettings.soundBoost) &&
             !Globals::gAudio.getPlayingSounds().empty())
         {
             for (const auto &playingSound : Globals::gAudio.getPlayingSounds())
@@ -614,7 +626,13 @@ namespace Audiopad::Objects
                     newVolume = sound.remoteVolume ? *sound.remoteVolume : Globals::gSettings.remoteVolume;
                 }
 
-                playingSound.raw.device.load()->masterVolumeFactor = static_cast<float>(newVolume) / 100.f;
+                playingSound.raw.device.load()->masterVolumeFactor =
+                    static_cast<float>(newVolume) / 100.f;
+                if (playingSound.raw.boostFactor)
+                {
+                    playingSound.raw.boostFactor->store(Globals::gAudio.getBoostFactor(sound.id),
+                                                        std::memory_order_relaxed);
+                }
             }
         }
 
@@ -766,6 +784,39 @@ namespace Audiopad::Objects
         onError(Enums::ErrorCode::TabDoesNotExist);
         return std::nullopt;
     }
+    std::optional<Tab> Window::setTabBoost(const std::uint32_t &id, int boost)
+    {
+        auto tab = Globals::gData.getTab(id);
+        if (tab)
+        {
+            //* Clamped with plain comparisons — <windows.h> macro-defines min/max on MSVC,
+            //* which would break std::min/std::max calls in this translation unit.
+            tab->boost = boost < 100 ? 100 : (boost > 400 ? 400 : boost);
+            auto newTab = Globals::gData.setTab(id, *tab);
+
+            //* Live-update the boost gain of every currently playing stream so the boost slider reacts
+            //* instantly instead of only affecting the next playback. The gain is applied by the audio
+            //* callback (see Audio::data_callback); masterVolumeFactor keeps handling plain volume only.
+            for (auto &playingSound : Globals::gAudio.getPlayingSounds())
+            {
+                if (playingSound.raw.boostFactor)
+                {
+                    playingSound.raw.boostFactor->store(Globals::gAudio.getBoostFactor(playingSound.sound.id),
+                                                        std::memory_order_relaxed);
+                }
+            }
+
+            if (newTab)
+            {
+                return newTab;
+            }
+        }
+
+        Fancy::fancy.logTime().failure() << "Failed to change boost for tab " << id << " tab does not exist"
+                                         << std::endl;
+        onError(Enums::ErrorCode::TabDoesNotExist);
+        return std::nullopt;
+    }
     std::optional<Sound> Window::setHotkey(const std::uint32_t &id, const std::vector<int> &hotkeys)
     {
         auto sound = Globals::gData.getSound(id);
@@ -786,8 +837,27 @@ namespace Audiopad::Objects
 
         for (auto tabId : newOrder)
         {
-            newTabs.emplace_back(*Globals::gData.getTab(tabId));
+            auto tab = Globals::gData.getTab(tabId);
+            if (tab)
+            {
+                newTabs.emplace_back(*tab);
+            }
+            else
+            {
+                Fancy::fancy.logTime().warning() << "Skipping non existent tab " << tabId
+                                                 << " while re-ordering tabs" << std::endl;
+            }
         }
+
+        if (newTabs.size() != Globals::gData.getTabs().size())
+        {
+            //* Reject partial orders, otherwise tabs would silently vanish from the soundboard.
+            Fancy::fancy.logTime().failure() << "Refusing tab re-order: the submitted list does not contain every tab"
+                                             << std::endl;
+            onError(Enums::ErrorCode::TabDoesNotExist);
+            return Globals::gData.getTabs();
+        }
+
         Globals::gData.setTabs(newTabs);
         return Globals::gData.getTabs();
     }

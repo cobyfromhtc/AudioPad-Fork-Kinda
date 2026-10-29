@@ -309,6 +309,7 @@ html, body {
   transition: background-color var(--transition-fast), color var(--transition-fast);
   position: relative;
   border-left: 2px solid transparent;
+  user-select: none;
 }
 
 .folder-item:hover {
@@ -394,6 +395,219 @@ html, body {
 
 .folder-action-btn.delete:hover {
   color: var(--color-danger);
+}
+
+/* --- Sidebar Dropdown Folder Groups (Category Organization) --- */
+.folder-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.folder-group.collapsed .folder-children {
+  display: none;
+}
+
+.folder-children {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  margin: 1px 0 2px 5px;
+  padding-left: 9px;
+  border-left: 1px solid var(--border-subtle);
+}
+
+.folder-children .folder-item {
+  padding: 5px 8px;
+}
+
+.folder-chevron {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 14px;
+  color: var(--color-muted);
+  transition: transform var(--transition-base);
+}
+
+.folder-group.expanded > .folder-header .folder-chevron {
+  transform: rotate(90deg);
+}
+
+.folder-header .folder-name-container {
+  gap: 6px;
+}
+
+.folder-header.contains-active {
+  border-left-color: var(--color-accent);
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* --- Sidebar Drag & Drop Re-ordering --- */
+.folder-item.dragging {
+  opacity: 0.45;
+}
+
+.folder-item.drop-above {
+  box-shadow: inset 0 2px 0 var(--color-accent);
+}
+
+.folder-item.drop-below {
+  box-shadow: inset 0 -2px 0 var(--color-accent);
+}
+
+.folder-item.drop-inside,
+.sidebar-drop-zone.drop-inside {
+  background-color: var(--color-accent-subtle);
+  box-shadow: inset 0 0 0 1.5px var(--color-accent);
+  color: var(--color-primary);
+}
+
+.sidebar-drop-zone {
+  display: none;
+  margin: 3px var(--space-xs) 0 var(--space-xs);
+  padding: 7px 8px;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-sm);
+  color: var(--color-muted);
+  font-size: 10.5px;
+  text-align: center;
+  user-select: none;
+  transition: border-color var(--transition-fast), color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+body.sidebar-drag-active .sidebar-drop-zone {
+  display: block;
+}
+
+/* --- Sidebar Add Buttons (Category + Dropdown Folder) --- */
+.sidebar-add-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 var(--space-xs);
+}
+
+.sidebar-add-buttons .add-folder-btn {
+  margin: 0;
+}
+
+.add-folder-btn.secondary {
+  background-color: transparent;
+  color: var(--color-muted);
+}
+
+.add-folder-btn.secondary:hover {
+  color: var(--color-primary);
+}
+
+/* --- Sound Boost --- */
+.vol-val-badge.boosted {
+  color: var(--color-warning);
+}
+
+.boost-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--color-warning);
+  background: var(--color-warning-subtle);
+  padding: 1px 4px;
+  border-radius: var(--radius-xs);
+  margin-left: 3px;
+}
+
+.toolbar-controls-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.boost-control {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.boost-control-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-secondary);
+}
+
+.boost-range {
+  width: 92px;
+}
+
+/* --- Folder Customize Modal (icon grid & color swatches) --- */
+.folder-icon-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.folder-icon-option {
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  color: var(--color-secondary);
+  cursor: pointer;
+  padding: 0;
+  transition: border-color var(--transition-fast), color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.folder-icon-option:hover {
+  border-color: var(--border-strong);
+  color: var(--color-primary);
+}
+
+.folder-icon-option.selected {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  background: var(--color-accent-subtle);
+}
+
+.folder-color-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.folder-color-swatch {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  padding: 0;
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.folder-color-swatch:hover {
+  transform: scale(1.12);
+}
+
+.folder-color-swatch.selected {
+  border-color: var(--color-primary);
+  transform: scale(1.18);
 }
 
 /* Add Category Button */
@@ -878,11 +1092,16 @@ html, body {
   padding: 2px 5px;
   border-radius: var(--radius-xs);
   cursor: pointer;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  max-width: 72px;
-  line-height: 1.2;
+  /* Full hotkey sequences must stay readable ("Ctrl + Alt + 1"): the keycap
+     auto-sizes to its content and wraps instead of being ellipsized. */
+  max-width: 100%;
+  min-width: 0;
+  flex-shrink: 1;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  text-align: center;
+  line-height: 1.25;
 }
 
 .macro-keycap.unassigned {

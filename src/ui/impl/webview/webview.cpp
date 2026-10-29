@@ -143,6 +143,8 @@ namespace Audiopad::Objects
         webview->expose(Webview::Function("refreshTab", [this](std::uint32_t id) { return refreshTab(id); }));
         webview->expose(Webview::Function(
             "setSortMode", [this](std::uint32_t id, Enums::SortMode sortMode) { return setSortMode(id, sortMode); }));
+        webview->expose(
+            Webview::Function("setTabBoost", [this](std::uint32_t id, const int &boost) { return setTabBoost(id, boost); }));
         webview->expose(Webview::Function(
             "moveTabs", [this](const std::vector<int> &newOrder) { return changeTabOrder(newOrder); }));
         webview->expose(Webview::Function("markFavorite", [this](const std::uint32_t &id, bool favorite) {

@@ -33,6 +33,9 @@ namespace Audiopad
 
             std::vector<Sound> sounds;
             Enums::SortMode sortMode = Enums::SortMode::ModifiedDate_Descending;
+
+            //* Per-soundboard output amplification in percent (100 = no boost, up to 400).
+            int boost = 100;
         };
     } // namespace Objects
 } // namespace Audiopad

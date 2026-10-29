@@ -43,6 +43,33 @@ namespace Audiopad::Objects
     {
         stopAll();
     }
+    float Audio::getBoostFactor(const std::uint32_t &soundId)
+    {
+        //* Clamp each boost level to a sane 100%..400% window so corrupted configs cannot
+        //* produce extreme gain values, then combine global and per-soundboard amplification.
+        //* NOTE: std::min/std::max are intentionally avoided here — <windows.h> defines
+        //* them as macros on MSVC, which breaks compilation in this translation unit.
+        const auto clampPercent = [](int value) -> float {
+            const int clamped = value < 100 ? 100 : (value > 400 ? 400 : value);
+            return static_cast<float>(clamped) / 100.f;
+        };
+
+        float factor = clampPercent(Globals::gSettings.soundBoost);
+
+        for (const auto &tab : Globals::gData.getTabs())
+        {
+            for (const auto &sound : tab.sounds)
+            {
+                if (sound.id == soundId)
+                {
+                    factor *= clampPercent(tab.boost);
+                    return factor > 16.f ? 16.f : factor;
+                }
+            }
+        }
+
+        return factor > 16.f ? 16.f : factor;
+    }
     std::optional<PlayingSound> Audio::play(const Objects::Sound &sound,
                                             const std::optional<Objects::AudioDevice> &playbackDevice)
     {
@@ -166,6 +193,9 @@ namespace Audiopad::Objects
         pSound->sound = sound;
         pSound->raw.device = device;
         pSound->raw.decoder = decoder;
+        //* Capture the boost gain on a shared atomic — the data callback amplifies the decoded
+        //* frames with it (miniaudio's masterVolumeFactor only attenuates, values above 1 are ignored).
+        pSound->raw.boostFactor = std::make_shared<std::atomic<float>>(getBoostFactor(sound.id));
         pSound->length = length_in_pcm_frames;
         pSound->sampleRate = device->sampleRate;
         pSound->playbackDevice = playbackDevice ? *playbackDevice : defaultPlayback;
@@ -438,6 +468,84 @@ namespace Audiopad::Objects
                                          << std::endl;
         return std::nullopt;
     }
+    //* Amplifies decoded PCM frames in-place with hard saturation at the format's ceiling,
+    //* so boosting above 100% can never wrap integer samples into harsh digital noise.
+    //* miniaudio's own masterVolumeFactor only ever attenuates (values above 1 are ignored),
+    //* which is why the boost gain has to be applied here on the decoded data directly.
+    static void applyBoostGain(void *frames, ma_uint64 frameCount, ma_format format, ma_uint32 channels, float gain)
+    {
+        if (frames == nullptr || gain <= 1.f || frameCount == 0 || channels == 0)
+        {
+            return;
+        }
+
+        const ma_uint64 samples = frameCount * channels;
+
+        switch (format)
+        {
+            case ma_format_f32:
+            {
+                auto *p = static_cast<float *>(frames);
+                for (ma_uint64 i = 0; i < samples; ++i)
+                {
+                    const float v = p[i] * gain;
+                    p[i] = v > 1.f ? 1.f : (v < -1.f ? -1.f : v);
+                }
+                break;
+            }
+            case ma_format_s16:
+            {
+                auto *p = static_cast<ma_int16 *>(frames);
+                for (ma_uint64 i = 0; i < samples; ++i)
+                {
+                    const float v = static_cast<float>(p[i]) * gain;
+                    p[i] = v > 32767.f ? 32767 : (v < -32768.f ? -32768 : static_cast<ma_int16>(v));
+                }
+                break;
+            }
+            case ma_format_s32:
+            {
+                auto *p = static_cast<ma_int32 *>(frames);
+                for (ma_uint64 i = 0; i < samples; ++i)
+                {
+                    const double v = static_cast<double>(p[i]) * gain;
+                    p[i] = v > 2147483647.0 ? 2147483647
+                                           : (v < -2147483648.0 ? (-2147483647 - 1) : static_cast<ma_int32>(v));
+                }
+                break;
+            }
+            case ma_format_u8:
+            {
+                auto *p = static_cast<ma_uint8 *>(frames);
+                for (ma_uint64 i = 0; i < samples; ++i)
+                {
+                    const float v = (static_cast<int>(p[i]) - 128) * gain + 128.f;
+                    p[i] = v > 255.f ? 255 : (v < 0.f ? 0 : static_cast<ma_uint8>(v));
+                }
+                break;
+            }
+            case ma_format_s24:
+            {
+                //* Packed little-endian 24-bit samples: sign-extend, gain, clamp, write back.
+                auto *p = static_cast<ma_uint8 *>(frames);
+                for (ma_uint64 i = 0; i < samples; ++i)
+                {
+                    ma_uint8 *b = p + (i * 3);
+                    const std::int32_t s = (static_cast<std::int32_t>(static_cast<std::int8_t>(b[2])) << 16) |
+                                           (static_cast<std::int32_t>(b[1]) << 8) | static_cast<std::int32_t>(b[0]);
+                    const double v = static_cast<double>(s) * gain;
+                    const std::int32_t c = v > 8388607.0 ? 8388607
+                                                        : (v < -8388608.0 ? -8388608 : static_cast<std::int32_t>(v));
+                    b[0] = static_cast<ma_uint8>(c & 0xFF);
+                    b[1] = static_cast<ma_uint8>((c >> 8) & 0xFF);
+                    b[2] = static_cast<ma_uint8>((c >> 16) & 0xFF);
+                }
+                break;
+            }
+            default:
+                break;
+        }
+    }
     void Audio::data_callback(ma_device *device, void *output, [[maybe_unused]] const void *input,
                               std::uint32_t frameCount)
     {
@@ -470,6 +578,20 @@ namespace Audiopad::Objects
                 ma_uint32 bytesPerFrame = ma_get_bytes_per_frame(pDecoder->outputFormat, pDecoder->outputChannels);
                 ma_uint8 *pOutputBytes = reinterpret_cast<ma_uint8 *>(output);
                 memset(pOutputBytes + (readFrames * bytesPerFrame), 0, (frameCount - readFrames) * bytesPerFrame);
+            }
+        }
+
+        //* Sound boost: amplify the freshly decoded frames with the (live-updatable) gain.
+        if (output && readFrames > 0 && sound->raw.boostFactor)
+        {
+            const float gain = sound->raw.boostFactor->load(std::memory_order_relaxed);
+            if (gain > 1.f)
+            {
+                ma_decoder *pBoostDecoder = sound->raw.decoder.load();
+                if (pBoostDecoder != nullptr)
+                {
+                    applyBoostGain(output, readFrames, pBoostDecoder->outputFormat, pBoostDecoder->outputChannels, gain);
+                }
             }
         }
 
@@ -600,6 +722,7 @@ namespace Audiopad::Objects
 
         raw.device.store(other.raw.device);
         raw.decoder.store(other.raw.decoder);
+        raw.boostFactor = other.raw.boostFactor;
         playbackDevice = other.playbackDevice;
     }
     PlayingSound &PlayingSound::operator=(const PlayingSound &other)
@@ -626,6 +749,7 @@ namespace Audiopad::Objects
 
         raw.device.store(other.raw.device);
         raw.decoder.store(other.raw.decoder);
+        raw.boostFactor = other.raw.boostFactor;
         playbackDevice = other.playbackDevice;
 
         return *this;

@@ -143,6 +143,7 @@ namespace nlohmann
                 {"selectedTab", obj.selectedTab},
                 {"localVolume", obj.localVolume},
                 {"remoteVolume", obj.remoteVolume},
+                {"soundBoost", obj.soundBoost},
                 {"audioBackend", obj.audioBackend},
                 {"deleteToTrash", obj.deleteToTrash},
                 {"pushToTalkKeys", obj.pushToTalkKeys},
@@ -203,6 +204,7 @@ namespace nlohmann
             get_to_safe(j, "viewMode", obj.viewMode);
             get_to_safe(j, "stopHotkey", obj.stopHotkey);
             get_to_safe(j, "localVolume", obj.localVolume);
+            get_to_safe(j, "soundBoost", obj.soundBoost);
             get_to_safe(j, "selectedTab", obj.selectedTab);
             get_to_safe(j, "syncVolumes", obj.syncVolumes);
             get_to_safe(j, "audioBackend", obj.audioBackend);
@@ -225,7 +227,8 @@ namespace nlohmann
                  {"name", obj.name},
                  {"path", obj.path},
                  {"sounds", obj.sounds},
-                 {"sortMode", obj.sortMode}};
+                 {"sortMode", obj.sortMode},
+                 {"boost", obj.boost}};
         }
         static void from_json(const json &j, Audiopad::Objects::Tab &obj)
         {
@@ -237,6 +240,10 @@ namespace nlohmann
             if (j.find("sortMode") != j.end())
             {
                 j.at("sortMode").get_to(obj.sortMode);
+            }
+            if (j.find("boost") != j.end() && j.at("boost").is_number())
+            {
+                j.at("boost").get_to(obj.boost);
             }
         }
     };

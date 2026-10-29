@@ -75,6 +75,7 @@ namespace Audiopad
             virtual std::optional<Tab> refreshTab(const std::uint32_t &);
             virtual std::vector<Tab> changeTabOrder(const std::vector<int> &);
             virtual std::optional<Tab> setSortMode(const std::uint32_t &, Enums::SortMode);
+            virtual std::optional<Tab> setTabBoost(const std::uint32_t &, int);
 
           protected:
             virtual bool toggleSoundPlayback();

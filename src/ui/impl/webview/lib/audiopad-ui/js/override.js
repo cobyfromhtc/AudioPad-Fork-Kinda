@@ -29,8 +29,36 @@ const icons = {
   headphones: `<svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>`,
   mic: `<svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>`,
   sun: `<svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`,
-  moon: `<svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`
+  moon: `<svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`,
+  bolt: `<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>`,
+  boltSmall: `<svg viewBox="0 0 24 24" width="9" height="9" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>`,
+  chevron: `<svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>`,
+  folderPlus: `<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2v1"></path><line x1="18" y1="9" x2="18" y2="15"></line><line x1="15" y1="12" x2="21" y2="12"></line></svg>`,
+  palette: `<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r="1.5"></circle><circle cx="17.5" cy="10.5" r="1.5"></circle><circle cx="8.5" cy="7.5" r="1.5"></circle><circle cx="6.5" cy="12.5" r="1.5"></circle><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path></svg>`
 };
+
+// --- Folder icon set & color palette for sidebar category folders ---
+const folderIconSet = {
+  folder: icons.folder,
+  music: `<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>`,
+  star: `<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`,
+  heart: `<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`,
+  gamepad: `<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="12" x2="6" y2="12.01"></line><line x1="18" y1="12" x2="18" y2="12.01"></line><line x1="10" y1="8" x2="10" y2="8.01"></line><line x1="14" y1="8" x2="14" y2="8.01"></line><rect x="2" y="6" width="20" height="12" rx="6"></rect></svg>`,
+  mic: `<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>`,
+  headphones: `<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>`,
+  bolt: `<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>`,
+  flame: `<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path></svg>`,
+  smile: `<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>`,
+  rocket: `<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path></svg>`,
+  layers: `<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>`,
+  tag: `<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>`,
+  globe: `<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>`
+};
+
+const folderColorPalette = [
+  '#38bdf8', '#22c55e', '#f59e0b', '#ef4444',
+  '#a855f7', '#ec4899', '#14b8a6', '#eab308'
+];
 
 // --- Application Reactive State ---
 let state = {
@@ -75,9 +103,24 @@ let state = {
     deleteToTrash: true,
     localVolume: 50,
     remoteVolume: 100,
+    soundBoost: 100,
     pushToTalkKeys: [],
     stopHotkey: [],
     outputs: []
+  },
+
+  //* Sidebar organization: collapsible dropdown folders that group category tabs.
+  //* Layout is keyed by tab *path* (stable across re-orders) and persisted in localStorage.
+  sidebarLayout: { folders: [], order: [] },
+  isDraggingSidebar: null, // { type: 'tab' | 'folder', tabId, folderId, path }
+  sidebarDragStartedAt: 0,
+
+  folderEditModal: {
+    visible: false,
+    folderId: null,
+    name: '',
+    icon: 'folder',
+    color: '#38bdf8'
   },
   
   isLinux: false,
@@ -151,6 +194,9 @@ async function init() {
         console.warn("Failed to query getTabs:", e);
       }
     }
+
+    // Restore sidebar folder organization (dropdown groups + ordering) from localStorage
+    loadSidebarLayout();
     
     if (window.getSettings) {
       try {
@@ -261,6 +307,10 @@ async function init() {
       }
     });
 
+    // Global safety net: always clean up sidebar drag state, even if the source element
+    // was removed from the DOM by a re-render in the middle of a drag operation.
+    document.addEventListener('dragend', handleSidebarDragEnd);
+
     // Window blur listener to release any drag lock immediately
     window.addEventListener('blur', () => {
       cleanupScrubberDrag();
@@ -294,13 +344,19 @@ async function init() {
 
     // Poll directories and tabs configuration changes from backend using lightweight signature check
     setInterval(async () => {
+      // Watchdog: recover from a drag session that never received its dragend event
+      if (state.isDraggingSidebar && Date.now() - (state.sidebarDragStartedAt || 0) > 20000) {
+        handleSidebarDragEnd();
+      }
       if (window.getTabs && 
           state.recordingHotkeySoundId === null && 
           state.activeVolumePopoverSoundId === null && 
           state.hoveredVolumeSoundId === null && 
           !isDraggingSlider && 
           !state.isMasterVolumeOpen && 
-          !state.isMasterVolumeHovered) {
+          !state.isMasterVolumeHovered &&
+          state.isDraggingSidebar === null &&
+          !(state.folderEditModal && state.folderEditModal.visible)) {
         try {
           const newTabs = await window.getTabs();
           if (newTabs && getTabsSignature(newTabs) !== getTabsSignature(state.tabs)) {
@@ -446,6 +502,16 @@ function changeView(view, tabId = null) {
   state.currentView = view;
   if (tabId !== null) {
     state.activeTabId = tabId;
+
+    // Auto-expand a collapsed dropdown folder that contains the newly selected category
+    const selectedTab = state.tabs.find(t => t.id === tabId);
+    if (selectedTab) {
+      const ownerFolder = getTabFolder(selectedTab.path);
+      if (ownerFolder && ownerFolder.collapsed) {
+        ownerFolder.collapsed = false;
+        saveSidebarLayout();
+      }
+    }
   }
   state.searchQuery = '';
   
@@ -568,9 +634,14 @@ async function handleAddTab() {
 async function handleDeleteTab(tabId) {
   if (window.removeTab) {
     if (confirm("Are you sure you want to remove this folder directory?")) {
+      // Removing a tab re-indexes tab ids, so remember the active category by its stable path
+      const activePathBefore = (state.tabs.find(t => t.id === state.activeTabId) || {}).path;
       const updated = await window.removeTab(tabId);
       state.tabs = updated;
-      if (state.activeTabId === tabId && updated.length > 0) {
+      const stillActive = updated.find(t => t.path === activePathBefore);
+      if (stillActive) {
+        state.activeTabId = stillActive.id;
+      } else if (updated.length > 0) {
         state.activeTabId = updated[0].id;
       }
       renderApp();
@@ -584,6 +655,543 @@ async function toggleFavorite(soundId, currentFavState) {
     state.tabs = await window.getTabs();
     renderApp();
   }
+}
+
+// --- Shared Helpers ---
+function escapeHtml(str) {
+  return String(str == null ? '' : str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function clampBoost(val) {
+  const n = parseInt(val, 10);
+  if (isNaN(n)) return 100;
+  return Math.max(100, Math.min(400, n));
+}
+
+// --- Sidebar Category Folders & Drag Re-ordering ---
+const SIDEBAR_LAYOUT_KEY = 'audiopad_sidebar_layout';
+
+function loadSidebarLayout() {
+  try {
+    const raw = localStorage.getItem(SIDEBAR_LAYOUT_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed && typeof parsed === 'object') {
+        state.sidebarLayout = {
+          folders: Array.isArray(parsed.folders) ? parsed.folders.filter(f => f && typeof f.id === 'string') : [],
+          order: Array.isArray(parsed.order) ? parsed.order.filter(e => typeof e === 'string') : []
+        };
+      }
+    }
+  } catch (e) {
+    console.warn('Failed to load sidebar layout:', e);
+  }
+}
+
+function saveSidebarLayout() {
+  try {
+    localStorage.setItem(SIDEBAR_LAYOUT_KEY, JSON.stringify(state.sidebarLayout));
+  } catch (e) {
+    console.warn('Failed to save sidebar layout:', e);
+  }
+}
+
+// Removes dead entries (deleted tabs / folders) and appends newly added tabs to the root order
+function pruneSidebarLayout() {
+  const layout = state.sidebarLayout;
+  const tabPaths = new Set(state.tabs.map(t => t.path));
+
+  layout.folders.forEach(f => {
+    f.tabPaths = Array.isArray(f.tabPaths) ? f.tabPaths.filter(p => tabPaths.has(p)) : [];
+    if (typeof f.collapsed !== 'boolean') f.collapsed = false;
+    if (!folderIconSet[f.icon]) f.icon = 'folder';
+    if (typeof f.name !== 'string' || !f.name.trim()) f.name = 'Folder';
+    if (typeof f.color !== 'string' || !f.color) f.color = '#38bdf8';
+  });
+
+  const folderIds = new Set(layout.folders.map(f => f.id));
+  const folderedPaths = new Set();
+  layout.folders.forEach(f => f.tabPaths.forEach(p => folderedPaths.add(p)));
+
+  layout.order = layout.order.filter(entry => {
+    if (entry.startsWith('tab:')) {
+      const p = entry.slice(4);
+      return tabPaths.has(p) && !folderedPaths.has(p);
+    }
+    if (entry.startsWith('folder:')) {
+      return folderIds.has(entry.slice(7));
+    }
+    return false;
+  });
+
+  // Tabs that are not grouped in any folder and missing from the order get appended to the end
+  state.tabs.forEach(t => {
+    if (!folderedPaths.has(t.path) && !layout.order.includes('tab:' + t.path)) {
+      layout.order.push('tab:' + t.path);
+    }
+  });
+}
+
+function getTabFolder(tabPath) {
+  return state.sidebarLayout.folders.find(f => (f.tabPaths || []).includes(tabPath)) || null;
+}
+
+function getTabByPath(tabPath) {
+  return state.tabs.find(t => t.path === tabPath) || null;
+}
+
+// Sends a complete new ordering of every tab id to the backend and keeps the active tab stable.
+// Tab ids are re-indexed after re-ordering, so the active selection is tracked by path.
+async function applyTabOrder(tabIds) {
+  if (!window.moveTabs || !Array.isArray(tabIds)) return false;
+  const activePathBefore = (state.tabs.find(t => t.id === state.activeTabId) || {}).path;
+  try {
+    const updated = await window.moveTabs(tabIds);
+    if (updated && Array.isArray(updated)) {
+      state.tabs = updated;
+      if (activePathBefore) {
+        const newActive = state.tabs.find(t => t.path === activePathBefore);
+        if (newActive) state.activeTabId = newActive.id;
+      }
+      if (!state.tabs.find(t => t.id === state.activeTabId) && state.tabs.length > 0) {
+        state.activeTabId = state.tabs[0].id;
+      }
+      return true;
+    }
+  } catch (e) {
+    console.warn('moveTabs error:', e);
+  }
+  return false;
+}
+
+// Moves a tab id inside the current global order so that it lands before/after the target tab
+async function reorderTabsGlobal(draggedTabId, targetTabId, insertAfter) {
+  const ids = state.tabs.map(t => t.id);
+  const from = ids.indexOf(draggedTabId);
+  if (from < 0) return false;
+  ids.splice(from, 1);
+  let at = ids.indexOf(targetTabId);
+  if (at < 0) {
+    ids.push(draggedTabId);
+  } else {
+    at += insertAfter ? 1 : 0;
+    ids.splice(at, 0, draggedTabId);
+  }
+  return await applyTabOrder(ids);
+}
+
+function moveTabIntoFolderLayout(tabPath, folderId) {
+  const layout = state.sidebarLayout;
+  layout.folders.forEach(f => {
+    f.tabPaths = (f.tabPaths || []).filter(p => p !== tabPath);
+  });
+  const folder = layout.folders.find(f => f.id === folderId);
+  if (!folder) return;
+  if (!folder.tabPaths.includes(tabPath)) folder.tabPaths.push(tabPath);
+  layout.order = layout.order.filter(e => e !== 'tab:' + tabPath);
+  folder.collapsed = false; // Reveal where the dropped category landed
+  saveSidebarLayout();
+  renderApp();
+}
+
+function moveTabToRootLayout(tabPath, refTabPath, insertAfter) {
+  const layout = state.sidebarLayout;
+  layout.folders.forEach(f => {
+    f.tabPaths = (f.tabPaths || []).filter(p => p !== tabPath);
+  });
+  const entry = 'tab:' + tabPath;
+  layout.order = layout.order.filter(e => e !== entry);
+  if (refTabPath) {
+    const idx = layout.order.indexOf('tab:' + refTabPath);
+    if (idx >= 0) {
+      layout.order.splice(insertAfter ? idx + 1 : idx, 0, entry);
+    } else {
+      layout.order.push(entry);
+    }
+  } else {
+    layout.order.push(entry);
+  }
+  saveSidebarLayout();
+  renderApp();
+}
+
+function moveFolderEntryTo(folderEntry, refEntry, insertAfter) {
+  const layout = state.sidebarLayout;
+  layout.order = layout.order.filter(e => e !== folderEntry);
+  if (refEntry) {
+    const idx = layout.order.indexOf(refEntry);
+    if (idx >= 0) {
+      layout.order.splice(insertAfter ? idx + 1 : idx, 0, folderEntry);
+    } else {
+      layout.order.push(folderEntry);
+    }
+  } else {
+    layout.order.push(folderEntry);
+  }
+  saveSidebarLayout();
+  renderApp();
+}
+
+function swapFolderPositions(folderIdA, folderIdB) {
+  const layout = state.sidebarLayout;
+  const entryA = 'folder:' + folderIdA;
+  const entryB = 'folder:' + folderIdB;
+  const idxA = layout.order.indexOf(entryA);
+  const idxB = layout.order.indexOf(entryB);
+  if (idxA < 0 || idxB < 0) return;
+  layout.order[idxA] = entryB;
+  layout.order[idxB] = entryA;
+  saveSidebarLayout();
+  renderApp();
+}
+
+// --- Dropdown Folder CRUD ---
+function handleCreateFolder() {
+  const id = 'f_' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+  state.sidebarLayout.folders.push({
+    id,
+    name: 'New Folder',
+    icon: 'folder',
+    color: '#38bdf8',
+    collapsed: false,
+    tabPaths: []
+  });
+  state.sidebarLayout.order.push('folder:' + id);
+  saveSidebarLayout();
+  handleOpenFolderEdit(id);
+}
+
+function handleDeleteFolder(folderId) {
+  const folder = state.sidebarLayout.folders.find(f => f.id === folderId);
+  if (!folder) return;
+  if (!confirm(`Remove folder "${folder.name}"? Its categories will return to the sidebar root.`)) {
+    return;
+  }
+  const layout = state.sidebarLayout;
+  // Categories inside the folder return to the root list (at the end)
+  folder.tabPaths.forEach(p => {
+    if (!layout.order.includes('tab:' + p)) {
+      layout.order.push('tab:' + p);
+    }
+  });
+  layout.folders = layout.folders.filter(f => f.id !== folderId);
+  layout.order = layout.order.filter(e => e !== 'folder:' + folderId);
+  if (state.folderEditModal.folderId === folderId) {
+    state.folderEditModal = { visible: false, folderId: null, name: '', icon: 'folder', color: '#38bdf8' };
+  }
+  saveSidebarLayout();
+  renderApp();
+}
+
+function handleToggleFolderCollapse(folderId) {
+  const folder = state.sidebarLayout.folders.find(f => f.id === folderId);
+  if (!folder) return;
+  folder.collapsed = !folder.collapsed;
+  saveSidebarLayout();
+  renderApp();
+}
+
+function handleOpenFolderEdit(folderId) {
+  const folder = state.sidebarLayout.folders.find(f => f.id === folderId);
+  if (!folder) return;
+  state.folderEditModal = {
+    visible: true,
+    folderId,
+    name: folder.name,
+    icon: folder.icon,
+    color: folder.color
+  };
+  renderApp();
+}
+
+function handleCloseFolderEdit() {
+  state.folderEditModal = { visible: false, folderId: null, name: '', icon: 'folder', color: '#38bdf8' };
+  renderApp();
+}
+
+function handleFolderEditField(field, val) {
+  if (!state.folderEditModal.visible) return;
+  state.folderEditModal[field] = val;
+  // Name typing keeps its own live value (no re-render); icon & color need a re-render to update the grid selection
+  if (field !== 'name') {
+    renderApp();
+  }
+}
+
+function handleSaveFolderEdit() {
+  const { folderId, name, icon, color } = state.folderEditModal;
+  const folder = state.sidebarLayout.folders.find(f => f.id === folderId);
+  if (folder) {
+    folder.name = (name || '').trim() || 'Folder';
+    folder.icon = folderIconSet[icon] ? icon : 'folder';
+    folder.color = folderColorPalette.includes(color) ? color : '#38bdf8';
+    saveSidebarLayout();
+  }
+  handleCloseFolderEdit();
+}
+
+// --- Sidebar Drag & Drop ---
+function handleSidebarDragStart(type, tabId, folderId, event) {
+  if (!event) return;
+  state.isDraggingSidebar = {
+    type,
+    tabId: type === 'tab' ? tabId : null,
+    folderId: type === 'folder' ? folderId : null,
+    path: null
+  };
+  state.sidebarDragStartedAt = Date.now();
+  if (type === 'tab') {
+    const tab = state.tabs.find(t => t.id === tabId);
+    state.isDraggingSidebar.path = tab ? tab.path : null;
+  }
+  try {
+    event.dataTransfer.effectAllowed = 'move';
+    event.dataTransfer.setData('text/plain', type);
+  } catch (e) {}
+  document.body.classList.add('sidebar-drag-active');
+  const el = event.currentTarget;
+  if (el) el.classList.add('dragging');
+}
+
+function handleSidebarDragEnd() {
+  state.isDraggingSidebar = null;
+  document.body.classList.remove('sidebar-drag-active');
+  clearSidebarDropIndicators();
+  document.querySelectorAll('.folder-item.dragging').forEach(el => el.classList.remove('dragging'));
+}
+
+function clearSidebarDropIndicators() {
+  document.querySelectorAll('.drop-above, .drop-below, .drop-inside').forEach(el => {
+    el.classList.remove('drop-above', 'drop-below', 'drop-inside');
+  });
+}
+
+function handleSidebarTabDragOver(tabId, event) {
+  if (!event || !state.isDraggingSidebar) return;
+  const drag = state.isDraggingSidebar;
+  if (drag.type === 'tab' && drag.tabId === tabId) return; // No self-drop
+  event.preventDefault();
+  event.stopPropagation();
+  event.dataTransfer.dropEffect = 'move';
+  const el = event.currentTarget;
+  const rect = el.getBoundingClientRect();
+  const before = (event.clientY - rect.top) < rect.height / 2;
+  clearSidebarDropIndicators();
+  el.classList.add(before ? 'drop-above' : 'drop-below');
+}
+
+function handleSidebarTabDragLeave(event) {
+  const el = event.currentTarget;
+  if (el) el.classList.remove('drop-above', 'drop-below');
+}
+
+async function handleSidebarTabDrop(tabId, event) {
+  if (!event) return;
+  event.preventDefault();
+  event.stopPropagation();
+  const drag = state.isDraggingSidebar;
+  const el = event.currentTarget;
+  const rect = el.getBoundingClientRect();
+  const insertAfter = (event.clientY - rect.top) >= rect.height / 2;
+  clearSidebarDropIndicators();
+  if (!drag) return;
+
+  const targetTab = state.tabs.find(t => t.id === tabId);
+  if (!targetTab) {
+    handleSidebarDragEnd();
+    return;
+  }
+
+  if (drag.type === 'folder') {
+    if (getTabFolder(targetTab.path)) {
+      handleSidebarDragEnd(); // Cannot place a folder inside another folder
+      return;
+    }
+    // Re-position the folder entry relative to a root-level category
+    handleSidebarDragEnd();
+    moveFolderEntryTo('folder:' + drag.folderId, 'tab:' + targetTab.path, insertAfter);
+    return;
+  }
+
+  const draggedTab = getTabByPath(drag.path);
+  if (!draggedTab) {
+    handleSidebarDragEnd();
+    return;
+  }
+
+  if (drag.tabId === tabId) {
+    handleSidebarDragEnd();
+    return;
+  }
+
+  const targetFolder = getTabFolder(targetTab.path);
+  // Re-order globally first (keeps folder contents ordered), then adjust grouping
+  const reordered = await reorderTabsGlobal(draggedTab.id, targetTab.id, insertAfter);
+
+  if (targetFolder) {
+    moveTabIntoFolderLayout(draggedTab.path, targetFolder.id);
+  } else {
+    moveTabToRootLayout(draggedTab.path, targetTab.path, insertAfter);
+  }
+  if (reordered) {
+    renderApp();
+  }
+}
+
+function handleSidebarFolderDragOver(folderId, event) {
+  if (!event || !state.isDraggingSidebar) return;
+  const drag = state.isDraggingSidebar;
+  if (drag.type === 'folder' && drag.folderId === folderId) return; // No self-drop
+  event.preventDefault();
+  event.stopPropagation();
+  event.dataTransfer.dropEffect = 'move';
+  clearSidebarDropIndicators();
+  const el = event.currentTarget;
+  if (el) el.classList.add('drop-inside');
+}
+
+function handleSidebarFolderDragLeave(event) {
+  const el = event.currentTarget;
+  if (el) el.classList.remove('drop-inside');
+}
+
+async function handleSidebarFolderDrop(folderId, event) {
+  if (!event) return;
+  event.preventDefault();
+  event.stopPropagation();
+  const drag = state.isDraggingSidebar;
+  clearSidebarDropIndicators();
+  if (!drag) return;
+
+  if (drag.type === 'folder') {
+    if (drag.folderId === folderId) {
+      handleSidebarDragEnd();
+      return;
+    }
+    handleSidebarDragEnd();
+    swapFolderPositions(drag.folderId, folderId);
+    return;
+  }
+
+  // Dropping a category onto a folder header moves it into that dropdown folder
+  if (drag.path) {
+    handleSidebarDragEnd();
+    moveTabIntoFolderLayout(drag.path, folderId);
+  }
+}
+
+function handleSidebarRootZoneDragOver(event) {
+  if (!event || !state.isDraggingSidebar) return;
+  event.preventDefault();
+  event.stopPropagation();
+  event.dataTransfer.dropEffect = 'move';
+  clearSidebarDropIndicators();
+  const el = event.currentTarget;
+  if (el) el.classList.add('drop-inside');
+}
+
+function handleSidebarRootZoneDragLeave(event) {
+  const el = event.currentTarget;
+  if (el) el.classList.remove('drop-inside');
+}
+
+async function handleSidebarRootZoneDrop(event) {
+  if (!event) return;
+  event.preventDefault();
+  event.stopPropagation();
+  const drag = state.isDraggingSidebar;
+  clearSidebarDropIndicators();
+  if (!drag) return;
+
+  if (drag.type === 'folder') {
+    handleSidebarDragEnd();
+    moveFolderEntryTo('folder:' + drag.folderId, null, true);
+    return;
+  }
+
+  const draggedTab = getTabByPath(drag.path);
+  if (!draggedTab) {
+    handleSidebarDragEnd();
+    return;
+  }
+  handleSidebarDragEnd();
+  // Move the category to the very end of the global order and back to the sidebar root
+  const ids = state.tabs.map(t => t.id);
+  const from = ids.indexOf(draggedTab.id);
+  if (from >= 0) {
+    ids.splice(from, 1);
+    ids.push(draggedTab.id);
+    const ok = await applyTabOrder(ids);
+    moveTabToRootLayout(draggedTab.path, null, true);
+    if (ok) renderApp();
+  }
+}
+
+// --- Sound Boost (Global + Per-Soundboard) ---
+async function handleGlobalBoostInput(val) {
+  const numVal = clampBoost(val);
+  state.settings.soundBoost = numVal;
+
+  document.querySelectorAll('#settings-boost-text').forEach(el => {
+    el.innerText = numVal + '%';
+    el.classList.toggle('boosted', numVal > 100);
+  });
+  document.querySelectorAll('#settings-boost-input').forEach(el => {
+    if (document.activeElement !== el) {
+      el.value = numVal;
+      el.setAttribute('value', numVal);
+    }
+  });
+
+  if (window.changeSettings) {
+    try {
+      await window.changeSettings(state.settings);
+    } catch (e) {
+      console.warn('changeSettings error:', e);
+    }
+  }
+}
+
+async function handleResetGlobalBoost() {
+  await handleGlobalBoostInput(100);
+  renderApp();
+}
+
+function handleTabBoostInput(tabId, val) {
+  const numVal = clampBoost(val);
+  const tab = state.tabs.find(t => t.id === tabId);
+  if (tab) tab.boost = numVal;
+  const textEl = document.getElementById('tab-boost-text');
+  if (textEl) {
+    textEl.innerText = numVal + '%';
+    textEl.classList.toggle('boosted', numVal > 100);
+  }
+}
+
+async function handleTabBoostCommit(tabId, val) {
+  const numVal = clampBoost(val);
+  if (window.setTabBoost) {
+    try {
+      const updatedTab = await window.setTabBoost(tabId, numVal);
+      const idx = state.tabs.findIndex(t => t.id === tabId);
+      if (idx >= 0 && updatedTab) {
+        state.tabs[idx] = updatedTab;
+      }
+    } catch (e) {
+      console.warn('setTabBoost error:', e);
+    }
+  }
+}
+
+async function handleTabBoostReset(tabId) {
+  handleTabBoostInput(tabId, 100);
+  await handleTabBoostCommit(tabId, 100);
+  renderApp();
 }
 
 function handleSearch(val) {
@@ -628,7 +1236,7 @@ function getTabsSignature(tabs) {
   let sig = "";
   for (let i = 0; i < tabs.length; i++) {
     const t = tabs[i];
-    sig += `${t.id}:${t.name}:${t.sortMode}:${t.sounds ? t.sounds.length : 0};`;
+    sig += `${t.id}:${t.name}:${t.sortMode}:${t.boost || 100}:${t.sounds ? t.sounds.length : 0};`;
     const sounds = t.sounds || [];
     for (let j = 0; j < sounds.length; j++) {
       const s = sounds[j];
@@ -1569,6 +2177,164 @@ function renderVBCableRequiredPage() {
   `;
 }
 
+// --- Sidebar Rendering (Categories + Dropdown Folders) ---
+function getFolderIconSvg(folder, expanded) {
+  if (folder.icon === 'folder' && expanded) {
+    return icons.folderOpen;
+  }
+  return folderIconSet[folder.icon] || icons.folder;
+}
+
+function renderSidebarCategories() {
+  pruneSidebarLayout();
+  const layout = state.sidebarLayout;
+  let html = '';
+  for (const entry of layout.order) {
+    if (entry.startsWith('tab:')) {
+      const tab = getTabByPath(entry.slice(4));
+      if (tab) {
+        html += renderSidebarTabItem(tab, null);
+      }
+    } else if (entry.startsWith('folder:')) {
+      const folder = layout.folders.find(f => f.id === entry.slice(7));
+      if (folder) {
+        html += renderSidebarFolderGroup(folder);
+      }
+    }
+  }
+  return html;
+}
+
+function renderSidebarTabItem(t, ownerFolderId) {
+  const count = t.sounds ? t.sounds.length : 0;
+  const isActive = state.currentView === 'folder' && t.id === state.activeTabId;
+  const boost = typeof t.boost === 'number' ? t.boost : 100;
+
+  return `
+    <div class="folder-item ${isActive ? 'active' : ''}"
+         draggable="true"
+         onclick="changeView('folder', ${t.id})"
+         ondragstart="handleSidebarDragStart('tab', ${t.id}, null, event)"
+         ondragend="handleSidebarDragEnd()"
+         ondragover="handleSidebarTabDragOver(${t.id}, event)"
+         ondragleave="handleSidebarTabDragLeave(event)"
+         ondrop="handleSidebarTabDrop(${t.id}, event)">
+      <div class="folder-name-container">
+        <span class="nav-icon">${isActive ? icons.folderOpen : icons.folder}</span>
+        <span title="${escapeHtml(t.name)}">${escapeHtml(t.name)}</span>
+      </div>
+      ${boost > 100 ? `<span class="boost-badge" title="Sound boost active: ${boost}%">${icons.boltSmall}${boost}%</span>` : ''}
+      <span class="category-count">${count}</span>
+      <div class="folder-actions">
+        <button class="folder-action-btn" title="Open in File Explorer" onclick="event.stopPropagation(); handleOpenFolder(${t.id})">
+          ${icons.openLink}
+        </button>
+        <button class="folder-action-btn delete" title="Remove Folder" onclick="event.stopPropagation(); handleDeleteTab(${t.id})">
+          ${icons.trash}
+        </button>
+      </div>
+    </div>
+  `;
+}
+
+function renderSidebarFolderGroup(folder) {
+  const folderTabs = state.tabs.filter(t => folder.tabPaths.includes(t.path));
+  const soundCount = folderTabs.reduce((acc, t) => acc + (t.sounds ? t.sounds.length : 0), 0);
+  const containsActive = folderTabs.some(t => state.currentView === 'folder' && t.id === state.activeTabId);
+  const expanded = !folder.collapsed;
+
+  const headerHtml = `
+    <div class="folder-item folder-header ${containsActive ? 'contains-active' : ''}"
+         draggable="true"
+         title="Click to ${folder.collapsed ? 'expand' : 'collapse'} — drag categories here to group them"
+         onclick="handleToggleFolderCollapse('${folder.id}')"
+         ondragstart="handleSidebarDragStart('folder', null, '${folder.id}', event)"
+         ondragend="handleSidebarDragEnd()"
+         ondragover="handleSidebarFolderDragOver('${folder.id}', event)"
+         ondragleave="handleSidebarFolderDragLeave(event)"
+         ondrop="handleSidebarFolderDrop('${folder.id}', event)">
+      <span class="folder-chevron">${icons.chevron}</span>
+      <div class="folder-name-container">
+        <span class="nav-icon" style="color: ${folder.color};">${getFolderIconSvg(folder, expanded)}</span>
+        <span title="${escapeHtml(folder.name)}">${escapeHtml(folder.name)}</span>
+      </div>
+      <span class="category-count">${soundCount}</span>
+      <div class="folder-actions">
+        <button class="folder-action-btn" title="Customize Folder (name, icon, color)" onclick="event.stopPropagation(); handleOpenFolderEdit('${folder.id}')">
+          ${icons.palette}
+        </button>
+        <button class="folder-action-btn delete" title="Delete Folder (categories are kept)" onclick="event.stopPropagation(); handleDeleteFolder('${folder.id}')">
+          ${icons.trash}
+        </button>
+      </div>
+    </div>
+  `;
+
+  const childrenHtml = folder.collapsed ? '' : `
+    <div class="folder-children">
+      ${folderTabs.map(t => renderSidebarTabItem(t, folder.id)).join('')}
+    </div>
+  `;
+
+  return `
+    <div class="folder-group ${folder.collapsed ? 'collapsed' : 'expanded'}">
+      ${headerHtml}
+      ${childrenHtml}
+    </div>
+  `;
+}
+
+// Render the "Customize Folder" modal (name, icon, color)
+function renderFolderEditModal() {
+  if (!state.folderEditModal || !state.folderEditModal.visible) return '';
+
+  const { name, icon, color } = state.folderEditModal;
+
+  return `
+    <div class="modal-overlay" onclick="handleCloseFolderEdit()">
+      <div class="modal-card" style="max-width: 420px; width: 100%;" onclick="event.stopPropagation()">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+          <h3 style="margin: 0; font-size: 16px; font-weight: 700; color: var(--color-primary);">Customize Folder</h3>
+          <button class="action-btn" onclick="handleCloseFolderEdit()">${icons.close}</button>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div style="display: flex; flex-direction: column; gap: 5px;">
+            <label for="folder-name-input" style="font-size: 11px; color: var(--color-secondary);">Folder name</label>
+            <input type="text" id="folder-name-input" class="search-input" style="width: 100%;"
+                   value="${escapeHtml(name)}" maxlength="40" oninput="handleFolderEditField('name', this.value)">
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <span style="font-size: 11px; color: var(--color-secondary);">Folder icon</span>
+            <div class="folder-icon-grid">
+              ${Object.keys(folderIconSet).map(key => `
+                <button class="folder-icon-option ${icon === key ? 'selected' : ''}" title="${key}"
+                        onclick="handleFolderEditField('icon', '${key}')">${folderIconSet[key]}</button>
+              `).join('')}
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <span style="font-size: 11px; color: var(--color-secondary);">Icon color</span>
+            <div class="folder-color-row">
+              ${folderColorPalette.map(c => `
+                <button class="folder-color-swatch ${color === c ? 'selected' : ''}" style="background-color: ${c};"
+                        title="${c}" onclick="handleFolderEditField('color', '${c}')"></button>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-actions" style="margin-top: 16px; display: flex; gap: 8px; justify-content: flex-end;">
+          <button class="modal-btn cancel-btn" onclick="handleCloseFolderEdit()">Cancel</button>
+          <button class="modal-btn save-btn" onclick="handleSaveFolderEdit()">Save</button>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
 function renderApp() {
   const container = document.getElementById('custom-app');
   if (!container) return;
@@ -1668,32 +2434,25 @@ function renderApp() {
             <span class="category-count">${totalFavs}</span>
           </div>
 
-          ${state.tabs.map(t => {
-            const count = t.sounds ? t.sounds.length : 0;
-            const isActive = state.currentView === 'folder' && t.id === state.activeTabId;
-            return `
-              <div class="folder-item ${isActive ? 'active' : ''}" onclick="changeView('folder', ${t.id})">
-                <div class="folder-name-container">
-                  <span class="nav-icon">${isActive ? icons.folderOpen : icons.folder}</span>
-                  <span title="${t.name}">${t.name}</span>
-                </div>
-                <span class="category-count">${count}</span>
-                <div class="folder-actions">
-                  <button class="folder-action-btn" title="Open in File Explorer" onclick="event.stopPropagation(); handleOpenFolder(${t.id})">
-                    ${icons.openLink}
-                  </button>
-                  <button class="folder-action-btn delete" title="Remove Folder" onclick="event.stopPropagation(); handleDeleteTab(${t.id})">
-                    ${icons.trash}
-                  </button>
-                </div>
-              </div>
-            `;
-          }).join('')}
+          ${renderSidebarCategories()}
         </div>
-        
-        <button class="add-folder-btn" onclick="handleAddTab()">
-          ${icons.plus} New Category
-        </button>
+
+        <!-- Drop zone: dragging a category here moves it back to the sidebar root (end position) -->
+        <div class="sidebar-drop-zone"
+             ondragover="handleSidebarRootZoneDragOver(event)"
+             ondragleave="handleSidebarRootZoneDragLeave(event)"
+             ondrop="handleSidebarRootZoneDrop(event)">
+          <span>Drop here to move to the root list</span>
+        </div>
+
+        <div class="sidebar-add-buttons">
+          <button class="add-folder-btn" onclick="handleAddTab()">
+            ${icons.plus} New Category
+          </button>
+          <button class="add-folder-btn secondary" onclick="handleCreateFolder()" title="Create a collapsible folder to group categories">
+            ${icons.folderPlus} New Folder
+          </button>
+        </div>
 
         <!-- Sidebar Bottom Utility Dock -->
         <div class="sidebar-utility-dock">
@@ -1812,6 +2571,7 @@ function renderApp() {
     ${renderModalOverlays()}
     ${renderContextMenu()}
     ${renderMultiImageModal()}
+    ${renderFolderEditModal()}
     
     <!-- Toast Notifications container -->
     <div class="toast-container" id="toast-container">
@@ -1910,7 +2670,7 @@ function renderViewContent(soundsList, isFolderView, activeTab) {
                       ${icons.image}
                     </button>
                   </div>
-                  <button class="macro-keycap ${!sound.hotkeys || !sound.hotkeys.length ? 'unassigned' : ''}" onclick="startRecordHotkey(${sound.id})" title="Click to assign hotkey">
+                  <button class="macro-keycap ${!sound.hotkeys || !sound.hotkeys.length ? 'unassigned' : ''}" onclick="startRecordHotkey(${sound.id})" title="${sound.hotkeys && sound.hotkeys.length > 0 ? sound.hotkeySequence + ' — click to reassign' : 'Click to assign hotkey'}">
                     ${sound.hotkeys && sound.hotkeys.length > 0 ? sound.hotkeySequence : '+ Key'}
                   </button>
                 </div>
@@ -2012,7 +2772,7 @@ function renderViewContent(soundsList, isFolderView, activeTab) {
                       ${icons.image}
                     </button>
                   </div>
-                  <button class="macro-keycap ${!sound.hotkeys || !sound.hotkeys.length ? 'unassigned' : ''}" onclick="startRecordHotkey(${sound.id})">
+                  <button class="macro-keycap ${!sound.hotkeys || !sound.hotkeys.length ? 'unassigned' : ''}" onclick="startRecordHotkey(${sound.id})" title="${sound.hotkeys && sound.hotkeys.length > 0 ? sound.hotkeySequence + ' — click to reassign' : 'Click to assign hotkey'}">
                     ${sound.hotkeys && sound.hotkeys.length > 0 ? sound.hotkeySequence : '+ Key'}
                   </button>
                 </div>
@@ -2088,7 +2848,7 @@ function renderViewContent(soundsList, isFolderView, activeTab) {
                 <th style="width: 30px; text-align: center;">★</th>
                 <th style="width: 36px; text-align: center;">Play</th>
                 <th>Sound Name</th>
-                <th style="width: 120px;">Hotkey</th>
+                <th style="width: 140px;">Hotkey</th>
                 <th style="width: 60px;">Length</th>
                 <th style="width: 65px;">Status</th>
                 <th style="width: 70px;">Volume</th>
@@ -2124,7 +2884,7 @@ function renderViewContent(soundsList, isFolderView, activeTab) {
                       </div>
                     </td>
                     <td>
-                      <button class="macro-keycap ${!sound.hotkeys || !sound.hotkeys.length ? 'unassigned' : ''}" onclick="event.stopPropagation(); startRecordHotkey(${sound.id})">
+                      <button class="macro-keycap ${!sound.hotkeys || !sound.hotkeys.length ? 'unassigned' : ''}" onclick="event.stopPropagation(); startRecordHotkey(${sound.id})" title="${sound.hotkeys && sound.hotkeys.length > 0 ? sound.hotkeySequence + ' — click to reassign' : 'Click to assign hotkey'}">
                         ${sound.hotkeys && sound.hotkeys.length > 0 ? sound.hotkeySequence : '+ Key'}
                       </button>
                     </td>
@@ -2226,12 +2986,27 @@ function renderViewContent(soundsList, isFolderView, activeTab) {
       ${isFolderView && activeTab ? `
         <div class="table-header-wrapper">
           <div class="checkbox-desc">Sort mode settings automatically sync with files order</div>
-          <select class="sort-select" onchange="handleSetSortMode(${activeTab.id}, this.value)">
-            <option value="0" ${activeTab.sortMode === 0 ? 'selected' : ''}>Modified Date (Asc)</option>
-            <option value="1" ${activeTab.sortMode === 1 ? 'selected' : ''}>Modified Date (Desc)</option>
-            <option value="2" ${activeTab.sortMode === 2 ? 'selected' : ''}>Alphabetical (Asc)</option>
-            <option value="3" ${activeTab.sortMode === 3 ? 'selected' : ''}>Alphabetical (Desc)</option>
-          </select>
+          <div class="toolbar-controls-group">
+            <div class="boost-control" title="Sound boost for this soundboard only — amplifies playback above 100%">
+              <span class="boost-control-label">${icons.bolt} Boost</span>
+              <input type="range" id="tab-boost-input" class="fader-range boost-range" min="100" max="400" step="5"
+                     value="${typeof activeTab.boost === 'number' ? activeTab.boost : 100}"
+                     onpointerdown="handleSliderDragStart(event)"
+                     onmousedown="handleSliderDragStart(event)"
+                     oninput="handleTabBoostInput(${activeTab.id}, this.value)"
+                     onchange="handleTabBoostCommit(${activeTab.id}, this.value)">
+              <span id="tab-boost-text" class="vol-val-badge ${activeTab.boost > 100 ? 'boosted' : ''}">${typeof activeTab.boost === 'number' ? activeTab.boost : 100}%</span>
+              ${activeTab.boost > 100 ? `
+                <button class="vol-reset-btn" title="Reset boost to 100%" onclick="handleTabBoostReset(${activeTab.id})">Reset</button>
+              ` : ''}
+            </div>
+            <select class="sort-select" onchange="handleSetSortMode(${activeTab.id}, this.value)">
+              <option value="0" ${activeTab.sortMode === 0 ? 'selected' : ''}>Modified Date (Asc)</option>
+              <option value="1" ${activeTab.sortMode === 1 ? 'selected' : ''}>Modified Date (Desc)</option>
+              <option value="2" ${activeTab.sortMode === 2 ? 'selected' : ''}>Alphabetical (Asc)</option>
+              <option value="3" ${activeTab.sortMode === 3 ? 'selected' : ''}>Alphabetical (Desc)</option>
+            </select>
+          </div>
         </div>
       ` : ''}
       
@@ -2363,6 +3138,30 @@ function renderViewContent(soundsList, isFolderView, activeTab) {
                 <span class="checkbox-desc">Bind local and remote playback output slider volume levels together.</span>
               </div>
             </label>
+          </div>
+
+          <div class="card-section" style="margin-top: var(--spacing-xl);">
+            <div class="card-title">Sound Boost</div>
+            <div style="display: flex; flex-direction: column; gap: var(--spacing-md);">
+              <div class="vol-slider-row">
+                <div class="vol-label-group">
+                  <label>Global Boost (all soundboards)</label>
+                  <span id="settings-boost-text" class="vol-val-badge ${state.settings.soundBoost > 100 ? 'boosted' : ''}">${state.settings.soundBoost}%</span>
+                </div>
+                <input type="range" id="settings-boost-input" min="100" max="400" step="5" value="${state.settings.soundBoost}"
+                       onpointerdown="handleSliderDragStart(event)" onmousedown="handleSliderDragStart(event)"
+                       oninput="handleGlobalBoostInput(this.value)">
+              </div>
+              <div class="checkbox-desc" style="margin-top: -4px;">
+                Amplify quiet audio clips above 100% output. Stacks with the per-soundboard boost shown in each category view.
+                Excessive boosting may introduce clipping distortion.
+              </div>
+              ${state.settings.soundBoost > 100 ? `
+                <div>
+                  <button class="vol-reset-btn" onclick="handleResetGlobalBoost()">Reset to 100%</button>
+                </div>
+              ` : ''}
+            </div>
           </div>
 
           <div class="card-section">

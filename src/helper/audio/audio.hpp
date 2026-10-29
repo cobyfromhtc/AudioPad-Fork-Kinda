@@ -28,6 +28,10 @@ namespace Audiopad
             {
                 std::atomic<ma_device *> device;
                 std::atomic<ma_decoder *> decoder;
+                //* Sound boost gain (>= 1) applied by the audio callback. Held via shared_ptr so
+                //* every copy of this PlayingSound shares the same value with the real instance
+                //* the callback uses — the UI thread can store() it live, the audio thread load()s it.
+                std::shared_ptr<std::atomic<float>> boostFactor;
             } raw;
 
             std::uint64_t length = 0;
@@ -65,6 +69,9 @@ namespace Audiopad
             std::optional<PlayingSound> repeat(const std::uint32_t &, bool);
             std::optional<PlayingSound> seek(const std::uint32_t &, std::uint64_t);
             std::optional<PlayingSound> play(const Objects::Sound &, const std::optional<AudioDevice> & = std::nullopt);
+
+            //* Combined amplification factor (global settings boost * tab boost) for the given sound.
+            static float getBoostFactor(const std::uint32_t &soundId);
 
             std::vector<AudioDevice> getAudioDevices();
             std::vector<Objects::PlayingSound> getPlayingSounds();

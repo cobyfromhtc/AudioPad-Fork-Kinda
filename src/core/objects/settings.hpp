@@ -25,6 +25,9 @@ namespace Audiopad
             int localVolume = 50;
             bool syncVolumes = false;
 
+            //* Global output amplification in percent (100 = no boost, up to 400).
+            int soundBoost = 100;
+
             bool allowMultipleOutputs = false;
             bool useAsDefaultDevice = false;
             bool muteDuringPlayback = false;
